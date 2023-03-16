@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.background {
+  @apply bg-gradient-to-br from-blue-50 to-purple-50;
+}
+
+/* body */
+body {
+  @apply background min-h-screen px-5 py-5 md:px-48 flex flex-col items-center justify-between gap-5;
+}
+
+/* footer */
+footer {
+  @apply flex flex-row gap-2 text-gray-800;
+}
+
+/* nav */
+nav h1 {
+  @apply text-3xl font-bold text-gray-700;
+}
