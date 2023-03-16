@@ -2,10 +2,10 @@
 
 ## 1. Examples
 
-### Repository card
+### Repository cards:
 
-![github readme card](https://raw.githubusercontent.com/MR-Addict/github-readme-card/output/repos/github-readme-card.svg)
-![Next.js](https://raw.githubusercontent.com/MR-Addict/github-readme-card/output/repos/next.js.svg)
+[![github readme card](https://raw.githubusercontent.com/MR-Addict/github-readme-card/output/repos/github-readme-card.svg)](https://github.com/MR-Addict/github-readme-card)
+[![Next.js](https://raw.githubusercontent.com/MR-Addict/github-readme-card/output/repos/next.js.svg)](https://github.com/vercel/next.js/)
 
 ## 1. Development
 
