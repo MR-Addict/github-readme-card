@@ -8,6 +8,7 @@
 
 /* body */
 body {
+  font-family: sans-serif;
   @apply background min-h-screen px-5 py-5 md:px-48 flex flex-col items-center justify-between gap-5;
 }
 

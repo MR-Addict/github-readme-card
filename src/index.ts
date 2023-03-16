@@ -7,7 +7,7 @@ import express from "express";
 import bodyParser from "body-parser";
 
 import views from "@/www/views";
-import { hello } from "@/route";
+import { repo } from "@/route";
 
 const port = 3000;
 const app = express();
@@ -23,6 +23,6 @@ app.set("view engine", "pug");
 app.set("views", path.join(process.cwd(), "src/www/views"));
 
 app.use("/", views);
-app.use("/hello", hello);
+app.use("/repo", repo);
 
 app.listen(port, () => console.log(`Listening on http://localhost:${port}`));
