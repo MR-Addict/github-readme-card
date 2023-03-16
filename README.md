@@ -23,7 +23,7 @@ Start developemnt:
 npm run dev
 ```
 
-## 3. Use links
+## 3. Useful links
 
 - [Github colors](https://github.com/ozh/github-colors)
 - [Pug template engine](https://github.com/pugjs/pug)
