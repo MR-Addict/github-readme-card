@@ -2,7 +2,10 @@
 
 ## 1. Examples
 
-![github readme card](https://raw.githubusercontent.com/MR-Addict/github-readme-card/output/repo/github-readme-card.svg)
+### Repository card
+
+![github readme card](https://raw.githubusercontent.com/MR-Addict/github-readme-card/output/repos/github-readme-card.svg)
+![Next.js](https://raw.githubusercontent.com/MR-Addict/github-readme-card/output/repos/next.js.svg)
 
 ## 1. Development
 

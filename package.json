@@ -18,7 +18,7 @@
   "scripts": {
     "build": "npm run build:css && tsc",
     "start": "node --no-warnings dist/index.js",
-    "export": "node --no-warnings dist/lib/exportAll.js",
+    "export": "node --no-warnings dist/export/exportAll.js",
     "build:css": "postcss src/www/style.css -o public/style.css",
     "dev": "npm run build && concurrently \"tsc --watch\" \"nodemon --no-warnings -q dist/index.js\" \"npm-watch\""
   },
