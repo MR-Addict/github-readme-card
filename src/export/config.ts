@@ -8,8 +8,8 @@ export const repos = [
     repo: "useless-box",
   },
   {
-    user: "facebook",
-    repo: "react",
+    user: "sveltejs",
+    repo: "svelte",
   },
   {
     user: "vercel",
