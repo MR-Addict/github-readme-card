@@ -1,5 +1,9 @@
 # Github README Card
 
+## 1. Examples
+
+![github readme card](https://raw.githubusercontent.com/MR-Addict/github-readme-card/output/repo/github-readme-card.svg)
+
 ## 1. Development
 
 Install packages:
