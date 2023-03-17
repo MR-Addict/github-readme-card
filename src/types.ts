@@ -6,7 +6,10 @@ export interface RawRepoInfoType {
   language: string;
 }
 
-export interface RepoConfigType {
-  user: string;
-  repo: string;
+export interface RawUserInfoType {
+  login: string;
+  bio: string;
+  followers: number;
+  following: number;
+  public_repos: number;
 }

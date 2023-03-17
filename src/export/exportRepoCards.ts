@@ -2,11 +2,10 @@ import fs from "fs";
 import path from "path";
 
 import config from "./loadconfig";
-import { RepoConfigType } from "@/types";
 import { compileRepoCard } from "@/svg";
 
 export default async function exportRepoCards() {
-  const repos: RepoConfigType[] = config.repos;
+  const repos: { user: string; repo: string }[] = config.repos;
   if (!repos?.length) throw new Error("Incorrect repos configuration");
 
   const build_dir = path.join(process.cwd(), "public/output/repocards");
