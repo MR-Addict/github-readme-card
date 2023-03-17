@@ -5,7 +5,9 @@ import { languageColors } from "./languageColors";
 export default async function fetchRepo(user: string, repo: string) {
   try {
     const url = `https://api.github.com/repos/${user}/${repo}`;
-    const res = await fetch(url);
+    const res = await fetch(url, {
+      headers: { Authorization: "Basic " + Buffer.from(`MR-Addict:${process.env.GITHUB_TOKEN}`).toString("base64") },
+    });
     if (!res.ok) throw new Error("Repo infomation not found!");
 
     const result: RawRepoInfoType = await res.json();

@@ -1,4 +1,4 @@
-# Github README Card
+# Github README Card ![build](https://github.com/MR-Addict/github-readme-card/actions/workflows/build.yml/badge.svg?branch=main)
 
 ## 1. Examples
 
