@@ -11,8 +11,6 @@ async function readRepos() {
 }
 
 export default async function exportRepoCards() {
-  console.log(process.env.GITHUB_TOKEN);
-
   const build_dir = path.join(process.cwd(), "output/repocards");
   fs.mkdirSync(build_dir, { recursive: true });
 
