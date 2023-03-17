@@ -1,9 +1,15 @@
-import express, { Request, Response } from "express";
+import fs from "fs";
+import pug from "pug";
+import path from "path";
 
-const router = express.Router();
+const profileCardPath = path.join(process.cwd(), "src/www/views/index.pug");
 
-router.get("/", async (req: Request, res: Response) => {
-  return res.render("index");
-});
+async function compileIndex() {
+  const public_dir = path.join(process.cwd(), "public");
+  fs.mkdirSync(public_dir, { recursive: true });
 
-export default router;
+  const index_html = pug.renderFile(profileCardPath);
+  await fs.promises.writeFile(path.join(public_dir, "index.html"), index_html);
+}
+
+compileIndex();

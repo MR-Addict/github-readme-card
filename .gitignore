@@ -8,8 +8,8 @@
 # vscode
 /.vscode
 
-# tailwindcss
-/public/style.css
+# public folder
+/public
 
 # export files
 output

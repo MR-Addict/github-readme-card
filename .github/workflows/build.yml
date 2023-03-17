@@ -21,7 +21,7 @@ jobs:
           restore-keys: ${{ runner.OS }}-npm-cache-
 
       - run: npm install
-      - run: npm run build && npm run export
+      - run: npm run export
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

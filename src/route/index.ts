@@ -1,1 +1,2 @@
-export { default as repocard } from "./repocard/repocard";
+export { default as repocard } from "./repocard";
+export { default as profilecard } from "./profilecard";
