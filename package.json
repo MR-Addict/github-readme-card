@@ -21,6 +21,13 @@
       ],
       "extensions": "pug",
       "quiet": true
+    },
+    "build:svg": {
+      "patterns": [
+        "src/svg"
+      ],
+      "extensions": "pug",
+      "quiet": true
     }
   },
   "scripts": {

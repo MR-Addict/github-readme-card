@@ -10,7 +10,7 @@ export default async function fetchUser(user: string) {
     const result: RawUserInfoType = await res.json();
 
     return {
-      user: result.login,
+      user: result.name,
       bio: result.bio,
       following: formatNumber(result.following),
       followers: formatNumber(result.followers),

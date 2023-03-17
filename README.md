@@ -7,6 +7,8 @@
 [![github readme card](https://raw.githubusercontent.com/MR-Addict/github-readme-card/output/repocards/github-readme-card.svg)](https://github.com/MR-Addict/github-readme-card/)
 [![Next.js](https://raw.githubusercontent.com/MR-Addict/github-readme-card/output/repocards/next.js.svg)](https://github.com/vercel/next.js/)
 
+### Profile cards:
+
 ## 2. Development
 
 Install packages:

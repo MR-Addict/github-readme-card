@@ -7,7 +7,7 @@ export interface RawRepoInfoType {
 }
 
 export interface RawUserInfoType {
-  login: string;
+  name: string;
   bio: string;
   followers: number;
   following: number;

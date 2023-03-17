@@ -6,12 +6,25 @@
 - const blue = "#2563eb"
 
 svg(fill="none" viewBox=viewBox width=width height=height xmlns="http://www.w3.org/2000/svg")
+  //- style tag
+  style.
+    p {
+      margin: 0;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      font-family: sans-serif;
+      color: #3c4249;
+    }
+
   rect(x="0" y="0" width=width height=height stroke=lightGray strokeWidth="2" rx="10" ry="10")
   line(x1="0" y1="180" x2=width y2="180" stroke=lightGray)
 
   g(transform="translate(30 80)")
     text(x="0" y="0" fill="#3c4249" font-size="40" font-weight="600" font-family="sans-serif")=user
-    text(x="0" y="50" fill=darkGray font-size="25" font-family="sans-serif")=bio
+    foreignObject(x="0" y="30" width="540" height="40")
+      p(xmlns="http://www.w3.org/1999/xhtml")=bio
 
   g
     line(x1="200" y1="180" x2="200" y2="300" stroke=lightGray)
