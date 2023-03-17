@@ -1,1 +1,1 @@
-export { default as compileRepo } from "./repo/compileRepo";
+export { default as compileRepoCard } from "./repoCard/compileRepoCard";

@@ -1,5 +1,5 @@
-import "./loadenv";
 import "module-alias/register";
+import "@/loadenv";
 
 import path from "path";
 import cors from "cors";
@@ -11,13 +11,13 @@ import { repo } from "@/route";
 
 const port = 3000;
 const app = express();
-const isLocalhost = process.env.ISLOCALHOST === "TRUE";
 
 app.use(express.json());
 app.use(cors({ origin: true }));
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(express.static(path.join(process.cwd(), "public"), { maxAge: isLocalhost ? 0 : 1000 * 60 * 60 * 4 }));
+app.use("/", express.static(path.join(process.cwd(), "public")));
+app.use("/output", express.static(path.join(process.cwd(), "output")));
 
 app.set("view engine", "pug");
 app.set("views", path.join(process.cwd(), "src/www/views"));

@@ -1,5 +1,5 @@
-import type { RepoType } from "./type";
 import { formatNumber } from "@/lib";
+import type { RawRepoInfoType } from "@/types";
 import { languageColors } from "./languageColors";
 
 export default async function fetchRepo(user: string, repo: string) {
@@ -8,7 +8,7 @@ export default async function fetchRepo(user: string, repo: string) {
     const res = await fetch(url);
     if (!res.ok) throw new Error("Repo infomation not found!");
 
-    const result: RepoType = await res.json();
+    const result: RawRepoInfoType = await res.json();
 
     return {
       name: result.name,
