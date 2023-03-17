@@ -14,11 +14,13 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-      - name: install packages
-        run: npm install
-      - name: build and export files
-        run: npm run build && npm run export
-      - name: push builds to output branch
+
+      - run: npm install
+      - run: npm run build && npm run export
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Push builds to output branch
         uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
           target_branch: output
