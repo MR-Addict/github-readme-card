@@ -17,3 +17,5 @@ export default async function exportRepoCards() {
     repoStrings.map((item, index) => fs.promises.writeFile(path.join(build_dir, repos[index].repo + ".svg"), item))
   );
 }
+
+exportRepoCards();

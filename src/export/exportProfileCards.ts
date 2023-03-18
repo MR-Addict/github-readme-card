@@ -17,3 +17,5 @@ export default async function exportProfileCards() {
     profileStrings.map((item, index) => fs.promises.writeFile(path.join(build_dir, users[index] + ".svg"), item))
   );
 }
+
+exportProfileCards();
