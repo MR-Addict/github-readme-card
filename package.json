@@ -17,7 +17,8 @@
     },
     "build:html": {
       "patterns": [
-        "src/www"
+        "src/www",
+        "src/svg"
       ],
       "extensions": "pug",
       "quiet": true

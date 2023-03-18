@@ -9,6 +9,9 @@
 
 ### Profile cards:
 
+[![MR-Addict](https://raw.githubusercontent.com/MR-Addict/github-readme-card/output/profilecards/MR-Addict.svg)](https://github.com/MR-Addict)
+[![sindresorhus](https://raw.githubusercontent.com/MR-Addict/github-readme-card/output/profilecards/sindresorhus.svg)](https://github.com/sindresorhus)
+
 ## 2. Development
 
 Install packages:
