@@ -1,0 +1,10 @@
+version: "3"
+services:
+  github-readme-card:
+    build: .
+    image: github-readme-card
+    container_name: github-readme-card
+    network_mode: "bridge"
+    restart: unless-stopped
+    ports:
+      - 3000:3000

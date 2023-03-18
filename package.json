@@ -14,20 +14,13 @@
       ],
       "extensions": "pug,css",
       "quiet": true
-    },
-    "build:export": {
-      "patterns": [
-        "src/svg"
-      ],
-      "extensions": "pug",
-      "quiet": true
     }
   },
   "scripts": {
     "copy": "shx mkdir -p public && shx cp static/* public",
     "build:html": "postcss src/www/style.css -o public/style.css && node --no-warnings dist/www/index.js",
-    "build:export": "node --no-warnings dist/export/exportAll.js",
-    "build": "tsc && npm run copy && npm run build:html && npm run build:export",
+    "build:svg": "node --no-warnings dist/export/exportAll.js",
+    "build": "tsc && npm run copy && npm run build:html && npm run build:svg",
     "start": "node --no-warnings dist/index.js",
     "dev": "concurrently \"tsc --watch\" \"nodemon --no-warnings -q dist/index.js\" \"npm-watch\""
   },
