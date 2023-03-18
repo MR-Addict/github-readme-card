@@ -7,23 +7,15 @@
     "@": "dist"
   },
   "watch": {
-    "build:css": {
-      "patterns": [
-        "src/www",
-        "pages"
-      ],
-      "extensions": "pug,css",
-      "quiet": true
-    },
     "build:html": {
       "patterns": [
         "src/www",
         "src/svg"
       ],
-      "extensions": "pug",
+      "extensions": "pug,css",
       "quiet": true
     },
-    "build:svg": {
+    "build:export": {
       "patterns": [
         "src/svg"
       ],
@@ -32,14 +24,12 @@
     }
   },
   "scripts": {
-    "copy": "shx mkdir -p public && shx cp pages/favicon.ico public && shx cp pages/robots.txt public",
-    "build:tsc": "tsc",
-    "build:css": "postcss pages/style.css -o public/style.css",
-    "build:html": "node --no-warnings dist/www/views.js",
-    "build:svg": "node --no-warnings dist/export/exportAll.js",
-    "build": "npm run copy && npm run build:tsc && npm run build:html && npm run build:css && npm run build:svg",
+    "copy": "shx mkdir -p public && shx cp static/* public",
+    "build:html": "postcss src/www/style.css -o public/style.css && node --no-warnings dist/www/index.js",
+    "build:export": "node --no-warnings dist/export/exportAll.js",
+    "build": "tsc && npm run copy && npm run build:html && npm run build:export",
     "start": "node --no-warnings dist/index.js",
-    "dev": "npm run build && concurrently \"tsc --watch\" \"nodemon --no-warnings -q dist/index.js\" \"npm-watch\""
+    "dev": "concurrently \"tsc --watch\" \"nodemon --no-warnings -q dist/index.js\" \"npm-watch\""
   },
   "repository": {
     "type": "git",
@@ -62,7 +52,8 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "pug": "^3.0.2"
+    "pug": "^3.0.2",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
     "@types/cors": "^2.8.13",
@@ -78,7 +69,6 @@
     "postcss-minify": "^1.1.0",
     "shx": "^0.3.4",
     "tailwindcss": "^3.2.7",
-    "typescript": "^4.9.5",
-    "zod": "^3.21.4"
+    "typescript": "^4.9.5"
   }
 }
