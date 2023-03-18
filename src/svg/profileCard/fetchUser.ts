@@ -12,9 +12,9 @@ export default async function fetchUser(user: string) {
     return {
       user: result.name,
       bio: result.bio,
-      following: formatNumber(result.following),
-      followers: formatNumber(result.followers),
-      public_repos: formatNumber(result.public_repos),
+      following: formatNumber(result.following, 0),
+      followers: formatNumber(result.followers, 0),
+      public_repos: formatNumber(result.public_repos, 0),
     };
   } catch (error) {
     throw new Error("User infomation not found!");
