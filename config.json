@@ -1,7 +1,20 @@
 {
   "repos": [
-    { "user": "MR-Addict", "repo": "github-readme-card" },
-    { "user": "vercel", "repo": "next.js" }
+    {
+      "user": "MR-Addict",
+      "repo": "github-readme-card"
+    },
+    {
+      "user": "vercel",
+      "repo": "next.js"
+    }
   ],
-  "users": ["MR-Addict", "sindresorhus"]
+  "profiles": [
+    {
+      "user": "MR-Addict"
+    },
+    {
+      "user": "sindresorhus"
+    }
+  ]
 }
