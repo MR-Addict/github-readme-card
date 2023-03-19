@@ -40102,16 +40102,16 @@ const path_1 = __importDefault(__nccwpck_require__(1017));
 const dotenv_1 = __nccwpck_require__(2437);
 (0, dotenv_1.config)();
 // get workspacePath and actio space
-const workspacePath = process.env.GITHUB_WORKSPACE || process.cwd();
+const workspacePath = process.cwd();
 exports.workspacePath = workspacePath;
-const actionPath = process.env.GITHUB_ACTION_PATH || workspacePath;
+const actionPath = process.env.GITHUB_ACTIONS ? path_1.default.join(__dirname, "../") : workspacePath;
 exports.actionPath = actionPath;
 // get github token
 const githubToken = process.env.GITHUB_TOKEN || "";
 exports.githubToken = githubToken;
 if (!githubToken)
     throw new Error("Please add your GITHUB_TOKEN");
-// get config.json and outputpath
+// get config.json and output path
 const outputPath = process.env.OUTPUT_PATH || path_1.default.join(workspacePath, "github-readme-card");
 exports.outputPath = outputPath;
 const configPath = path_1.default.join(process.env.CONFIG_PATH || workspacePath, "config.json");
@@ -40119,6 +40119,7 @@ exports.configPath = configPath;
 // check config.json exists
 if (!fs_1.default.existsSync(configPath))
     throw new Error("Please add correct config.json path");
+console.log({ workspacePath, actionPath: __dirname, configPath, githubToken, outputPath });
 
 
 /***/ }),
