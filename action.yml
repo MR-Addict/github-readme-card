@@ -4,3 +4,6 @@ author: MR-Addict
 runs:
   using: node16
   main: ncc/export
+branding:
+  icon: octagon
+  color: green
