@@ -5,12 +5,12 @@ import pug from "pug";
 import path from "path";
 
 import { formatDate } from "../lib";
-import { workspace } from "../loadenv";
+import { workspacePath } from "../loadenv";
 
-const profileCardPath = path.join(workspace, "src/www/views/index.pug");
+const profileCardPath = path.join(workspacePath, "src/www/views/index.pug");
 
 async function compileIndex() {
-  const public_dir = path.join(workspace, "public");
+  const public_dir = path.join(workspacePath, "public");
   fs.mkdirSync(public_dir, { recursive: true });
 
   const index_html = pug.renderFile(profileCardPath, { last_update: formatDate(new Date()) });
