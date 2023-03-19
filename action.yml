@@ -4,7 +4,6 @@ author: MR-Addict
 runs:
   using: node16
   main: ncc/export/index.js
-  working-directory: .
 branding:
   icon: octagon
   color: green
