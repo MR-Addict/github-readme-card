@@ -1,11 +1,10 @@
-import "module-alias/register";
-import "@/loadenv";
+import "../loadenv";
 
 import fs from "fs";
 import pug from "pug";
 import path from "path";
 
-import { formatDate } from "@/lib";
+import { formatDate } from "../lib";
 
 const profileCardPath = path.join(process.cwd(), "src/www/views/index.pug");
 

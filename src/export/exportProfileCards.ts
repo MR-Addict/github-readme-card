@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 
 import config from "./loadconfig";
-import { compileProfileCard } from "@/svg";
+import { compileProfileCard } from "../svg";
 
 export default async function exportProfileCards() {
   const profiles = config.profiles;

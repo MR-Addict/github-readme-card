@@ -1,5 +1,5 @@
-import { formatNumber } from "@/lib";
-import type { RawRepoInfoType } from "@/types";
+import { formatNumber } from "../../lib";
+import type { RawRepoInfoType } from "../../types";
 import { languageColors } from "./languageColors";
 
 export default async function fetchRepo(user: string, repo: string) {

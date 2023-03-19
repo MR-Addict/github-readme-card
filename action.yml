@@ -1,0 +1,6 @@
+name: Github Readme Card
+description: Generate various cards for your github Readme
+author: MR-Addict
+runs:
+  using: node16
+  main: ncc/export

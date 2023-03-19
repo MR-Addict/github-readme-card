@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 
 import config from "./loadconfig";
-import { compileRepoCard } from "@/svg";
+import { compileRepoCard } from "../svg";
 
 export default async function exportRepoCards() {
   const repos = config.repos;

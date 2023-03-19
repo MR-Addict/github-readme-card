@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 
-import { compileRepoCard } from "@/svg";
+import { compileRepoCard } from "../svg";
 
 const router = express.Router();
 

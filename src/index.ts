@@ -1,12 +1,11 @@
-import "module-alias/register";
-import "@/loadenv";
+import "./loadenv";
 
 import path from "path";
 import cors from "cors";
 import express from "express";
 import bodyParser from "body-parser";
 
-import { repocard, profilecard } from "@/route";
+import { repocard, profilecard } from "./route";
 
 const port = 3000;
 const app = express();

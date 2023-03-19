@@ -1,5 +1,5 @@
-import { formatNumber } from "@/lib";
-import type { RawUserInfoType } from "@/types";
+import { formatNumber } from "../../lib";
+import type { RawUserInfoType } from "../../types";
 
 export default async function fetchUser(user: string) {
   try {

@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 
-import { compileProfileCard } from "@/svg";
+import { compileProfileCard } from "../svg";
 
 const router = express.Router();
 
