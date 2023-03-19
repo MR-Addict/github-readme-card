@@ -40007,15 +40007,16 @@ const path_1 = __importDefault(__nccwpck_require__(1017));
 const cors_1 = __importDefault(__nccwpck_require__(5287));
 const express_1 = __importDefault(__nccwpck_require__(1204));
 const body_parser_1 = __importDefault(__nccwpck_require__(7076));
+const loadenv_1 = __nccwpck_require__(4907);
 const route_1 = __nccwpck_require__(4218);
 const port = 3000;
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use((0, cors_1.default)({ origin: true }));
 app.use(body_parser_1.default.urlencoded({ extended: false }));
-app.use("/", express_1.default.static(path_1.default.join(process.cwd(), "public")));
+app.use("/", express_1.default.static(path_1.default.join(loadenv_1.workspace, "public")));
 app.set("view engine", "pug");
-app.set("views", path_1.default.join(process.cwd(), "src/www/views"));
+app.set("views", path_1.default.join(loadenv_1.workspace, "src/www/views"));
 app.use("/repocard", route_1.repocard);
 app.use("/profilecard", route_1.profilecard);
 app.listen(port, () => console.log(`Listening on http://localhost:${port}`));
@@ -40095,24 +40096,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.outputPath = exports.githubToken = exports.configPath = void 0;
+exports.outputPath = exports.githubToken = exports.configPath = exports.workspace = void 0;
 const fs_1 = __importDefault(__nccwpck_require__(7147));
 const path_1 = __importDefault(__nccwpck_require__(1017));
 const dotenv_1 = __nccwpck_require__(2437);
 (0, dotenv_1.config)();
-const rawConfigPath = process.env.CONFIG_PATH || "";
-const outputPath = process.env.OUTPUT_PATH || "";
-exports.outputPath = outputPath;
+// get workspace
+const workspace = process.env.GITHUB_WORKSPACE || process.cwd();
+exports.workspace = workspace;
+// get github token
 const githubToken = process.env.GITHUB_TOKEN || "";
 exports.githubToken = githubToken;
-if (rawConfigPath === "")
-    throw new Error("Please add CONFIG_PATH");
-if (outputPath === "")
-    throw new Error("Please add output OUTPUT_PATH");
-if (githubToken === "")
+if (!githubToken)
     throw new Error("Please add your GITHUB_TOKEN");
-const configPath = path_1.default.join(rawConfigPath, "config.json");
+// get config.json and outputpath
+const outputPath = process.env.OUTPUT_PATH || path_1.default.join(workspace, "github-readme-card");
+exports.outputPath = outputPath;
+const configPath = path_1.default.join(process.env.CONFIG_PATH || workspace, "config.json");
 exports.configPath = configPath;
+// check config.json exists
 if (!fs_1.default.existsSync(configPath))
     throw new Error("Please add correct config.json path");
 
@@ -40259,7 +40261,8 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const pug_1 = __importDefault(__nccwpck_require__(316));
 const path_1 = __importDefault(__nccwpck_require__(1017));
 const fetchUser_1 = __importDefault(__nccwpck_require__(5140));
-const profileCardPath = path_1.default.join(process.cwd(), "src/svg/profileCard/profileCard.pug");
+const loadenv_1 = __nccwpck_require__(4907);
+const profileCardPath = path_1.default.join(loadenv_1.workspace, "src/svg/profileCard/profileCard.pug");
 function compileRepoCard(user) {
     return __awaiter(this, void 0, void 0, function* () {
         const locals = yield (0, fetchUser_1.default)(user);
@@ -40361,7 +40364,8 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const pug_1 = __importDefault(__nccwpck_require__(316));
 const path_1 = __importDefault(__nccwpck_require__(1017));
 const fetchRepo_1 = __importDefault(__nccwpck_require__(430));
-const repoCardPath = path_1.default.join(process.cwd(), "src/svg/repoCard/repoCard.pug");
+const loadenv_1 = __nccwpck_require__(4907);
+const repoCardPath = path_1.default.join(loadenv_1.workspace, "src/svg/repoCard/repoCard.pug");
 function compileRepoCard(user, repo) {
     return __awaiter(this, void 0, void 0, function* () {
         const locals = yield (0, fetchRepo_1.default)(user, repo);

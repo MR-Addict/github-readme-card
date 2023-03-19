@@ -4,14 +4,19 @@ import { config } from "dotenv";
 
 config();
 
-const rawConfigPath = process.env.CONFIG_PATH || "";
-const outputPath = process.env.OUTPUT_PATH || "";
-const githubToken = process.env.GITHUB_TOKEN || "";
-if (rawConfigPath === "") throw new Error("Please add CONFIG_PATH");
-if (outputPath === "") throw new Error("Please add output OUTPUT_PATH");
-if (githubToken === "") throw new Error("Please add your GITHUB_TOKEN");
+// get workspace
+const workspace = process.env.GITHUB_WORKSPACE || process.cwd();
 
-const configPath = path.join(rawConfigPath, "config.json");
+// get github token
+const githubToken = process.env.GITHUB_TOKEN || "";
+if (!githubToken) throw new Error("Please add your GITHUB_TOKEN");
+
+// get config.json and outputpath
+const outputPath = process.env.OUTPUT_PATH || path.join(workspace, "github-readme-card");
+const configPath = path.join(process.env.CONFIG_PATH || workspace, "config.json");
+
+// check config.json exists
 if (!fs.existsSync(configPath)) throw new Error("Please add correct config.json path");
 
-export { configPath, githubToken, outputPath };
+// export constants
+export { workspace, configPath, githubToken, outputPath };

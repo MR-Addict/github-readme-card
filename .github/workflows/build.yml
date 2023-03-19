@@ -23,8 +23,7 @@ jobs:
       - run: npm install
       - run: npm run build
         env:
-          CONFIG_PATH: ${{ github.workspace }}
-          OUTPUT_PATH: ${{ github.workspace }}/public/github-readme-card
+          OUTPUT_PATH: public/github-readme-card
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Push public to github pages
