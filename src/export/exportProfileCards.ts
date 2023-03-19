@@ -2,12 +2,13 @@ import fs from "fs";
 import path from "path";
 
 import config from "./loadconfig";
+import { outputPath } from "../loadenv";
 import { compileProfileCard } from "../svg";
 
 export default async function exportProfileCards() {
   const profiles = config.profiles;
 
-  const build_dir = path.join(process.cwd(), "public/output/profilecards");
+  const build_dir = path.join(outputPath, "profilecards");
   fs.mkdirSync(build_dir, { recursive: true });
 
   const profileStrings = await Promise.all(profiles.map((item) => compileProfileCard(item.user)));

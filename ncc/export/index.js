@@ -19732,11 +19732,12 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const fs_1 = __importDefault(__nccwpck_require__(7147));
 const path_1 = __importDefault(__nccwpck_require__(1017));
 const loadconfig_1 = __importDefault(__nccwpck_require__(939));
+const loadenv_1 = __nccwpck_require__(4907);
 const svg_1 = __nccwpck_require__(5459);
 function exportProfileCards() {
     return __awaiter(this, void 0, void 0, function* () {
         const profiles = loadconfig_1.default.profiles;
-        const build_dir = path_1.default.join(process.cwd(), "public/output/profilecards");
+        const build_dir = path_1.default.join(loadenv_1.outputPath, "profilecards");
         fs_1.default.mkdirSync(build_dir, { recursive: true });
         const profileStrings = yield Promise.all(profiles.map((item) => (0, svg_1.compileProfileCard)(item.user)));
         yield Promise.all(profileStrings.map((item, index) => fs_1.default.promises.writeFile(path_1.default.join(build_dir, profiles[index].user + ".svg"), item)));
@@ -19769,11 +19770,12 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const fs_1 = __importDefault(__nccwpck_require__(7147));
 const path_1 = __importDefault(__nccwpck_require__(1017));
 const loadconfig_1 = __importDefault(__nccwpck_require__(939));
+const loadenv_1 = __nccwpck_require__(4907);
 const svg_1 = __nccwpck_require__(5459);
 function exportRepoCards() {
     return __awaiter(this, void 0, void 0, function* () {
         const repos = loadconfig_1.default.repos;
-        const build_dir = path_1.default.join(process.cwd(), "public/output/repocards");
+        const build_dir = path_1.default.join(loadenv_1.outputPath, "repocards");
         fs_1.default.mkdirSync(build_dir, { recursive: true });
         const repoStrings = yield Promise.all(repos.map((item) => (0, svg_1.compileRepoCard)(item.user, item.repo)));
         yield Promise.all(repoStrings.map((item, index) => fs_1.default.promises.writeFile(path_1.default.join(build_dir, repos[index].repo + ".svg"), item)));
@@ -19880,16 +19882,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.githubToken = exports.configPath = void 0;
+exports.outputPath = exports.githubToken = exports.configPath = void 0;
 const fs_1 = __importDefault(__nccwpck_require__(7147));
 const path_1 = __importDefault(__nccwpck_require__(1017));
 const dotenv_1 = __nccwpck_require__(2437);
 (0, dotenv_1.config)();
 const rawConfigPath = process.env.CONFIG_PATH || "";
+const outputPath = process.env.OUTPUT_PATH || "";
+exports.outputPath = outputPath;
 const githubToken = process.env.GITHUB_TOKEN || "";
 exports.githubToken = githubToken;
 if (rawConfigPath === "")
     throw new Error("Please add CONFIG_PATH");
+if (outputPath === "")
+    throw new Error("Please add output OUTPUT_PATH");
 if (githubToken === "")
     throw new Error("Please add your GITHUB_TOKEN");
 const configPath = path_1.default.join(rawConfigPath, "config.json");
