@@ -24,6 +24,7 @@ jobs:
       - run: npm run build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CONFIG_PATH: ${{ github.workspace }}
 
       - name: Push public to github pages
         uses: crazy-max/ghaction-github-pages@v3.1.0

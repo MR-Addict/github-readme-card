@@ -19882,16 +19882,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.githubToken = exports.configPath = void 0;
 const fs_1 = __importDefault(__nccwpck_require__(7147));
+const path_1 = __importDefault(__nccwpck_require__(1017));
 const dotenv_1 = __nccwpck_require__(2437);
 (0, dotenv_1.config)();
-const configPath = process.env.CONFIG_PATH || "";
-exports.configPath = configPath;
+const rawConfigPath = process.env.CONFIG_PATH || "";
 const githubToken = process.env.GITHUB_TOKEN || "";
 exports.githubToken = githubToken;
-if (configPath === "")
+if (rawConfigPath === "")
     throw new Error("Please add CONFIG_PATH");
 if (githubToken === "")
     throw new Error("Please add your GITHUB_TOKEN");
+const configPath = path_1.default.join(rawConfigPath, "config.json");
+exports.configPath = configPath;
 if (!fs_1.default.existsSync(configPath))
     throw new Error("Please add correct config.json path");
 
