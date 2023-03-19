@@ -40104,7 +40104,7 @@ const dotenv_1 = __nccwpck_require__(2437);
 // get workspacePath and actio space
 const workspacePath = process.env.GITHUB_WORKSPACE || process.cwd();
 exports.workspacePath = workspacePath;
-const actionPath = process.env.GITHUB_ACTIONS ? path_1.default.join(__dirname, "../../../") : workspacePath;
+const actionPath = process.env.GITHUB_ACTIONS ? path_1.default.join(__dirname, "../../") : workspacePath;
 exports.actionPath = actionPath;
 // get github token
 const githubToken = process.env.GITHUB_TOKEN || "";

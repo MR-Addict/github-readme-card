@@ -6,7 +6,7 @@ config();
 
 // get workspacePath and actio space
 const workspacePath = process.env.GITHUB_WORKSPACE || process.cwd();
-const actionPath = process.env.GITHUB_ACTIONS ? path.join(__dirname, "../../../") : workspacePath;
+const actionPath = process.env.GITHUB_ACTIONS ? path.join(__dirname, "../../") : workspacePath;
 
 // get github token
 const githubToken = process.env.GITHUB_TOKEN || "";
