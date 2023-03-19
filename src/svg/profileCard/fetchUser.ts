@@ -1,5 +1,3 @@
-import axios from "axios";
-
 import { formatNumber } from "../../lib";
 import { githubToken } from "../../loadenv";
 import type { RawUserInfoType } from "../../types";
@@ -24,12 +22,13 @@ export default async function fetchUser(user: string) {
   `;
 
   try {
-    const url = "https://api.github.com/graphql";
-    const headers = { Authorization: `Bearer ${githubToken}`, "Content-Type": "application/json" };
-    const res = await axios.post(url, JSON.stringify({ query }), { headers });
-
-    if (res.status !== 200) throw new Error("Failed to fetch user info");
-    const result: RawUserInfoType = res.data;
+    const res = await fetch("https://api.github.com/graphql", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${githubToken}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ query }),
+    });
+    if (!res.ok) throw new Error("Failed to fetch user info");
+    const result: RawUserInfoType = await res.json();
 
     if (result.errors) throw new Error("Failed to fetch user info");
     const { name, bio, followers, following, repositories } = result.data.user;

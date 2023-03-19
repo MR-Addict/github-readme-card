@@ -3,7 +3,7 @@ description: Generate various cards for your github Readme
 author: MR-Addict
 runs:
   using: node16
-  main: ncc/export/index.js
+  main: dist/export/index.js
 branding:
   icon: octagon
   color: green
