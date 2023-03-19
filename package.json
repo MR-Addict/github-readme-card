@@ -17,7 +17,7 @@
     "copy": "shx mkdir -p public && shx cp static/* public",
     "build:html": "postcss src/www/style.css -o public/style.css && node --no-warnings dist/www/index.js",
     "build:ncc": "ncc -q build src/export/index.ts -o ncc/export && ncc -q build src/index.ts -o ncc/serve",
-    "build": "tsc && npm run copy && npm run build:html && npm run build:ncc && npm run export",
+    "build": "tsc && npm run copy && npm run build:ncc && npm run build:html && npm run export",
     "export": "node --no-warnings ncc/export",
     "serve": "node --no-warnings ncc/serve",
     "dev": "concurrently \"tsc --watch\" \"nodemon --no-warnings -q dist/index.js\" \"npm-watch\""

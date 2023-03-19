@@ -38026,13 +38026,28 @@ Object.defineProperty(exports, "formatNumber", ({ enumerable: true, get: functio
 /***/ }),
 
 /***/ 4907:
-/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 "use strict";
 
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.githubToken = exports.configPath = void 0;
+const fs_1 = __importDefault(__nccwpck_require__(7147));
 const dotenv_1 = __nccwpck_require__(2437);
 (0, dotenv_1.config)();
+const configPath = process.env.CONFIG_PATH || "";
+exports.configPath = configPath;
+const githubToken = process.env.GITHUB_TOKEN || "";
+exports.githubToken = githubToken;
+if (configPath === "")
+    throw new Error("Please add CONFIG_PATH");
+if (githubToken === "")
+    throw new Error("Please add your GITHUB_TOKEN");
+if (!fs_1.default.existsSync(configPath))
+    throw new Error("Please add correct config.json path");
 
 
 /***/ }),
@@ -38205,11 +38220,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const lib_1 = __nccwpck_require__(6791);
+const loadenv_1 = __nccwpck_require__(4907);
 function fetchUser(user) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const url = `https://api.github.com/users/${user}`;
-            const res = yield fetch(url, { headers: { Authorization: `Bearer ${process.env.GITHUB_TOKEN}` } });
+            const res = yield fetch(url, { headers: { Authorization: `Bearer ${loadenv_1.githubToken}` } });
             if (!res.ok)
                 throw new Error("User infomation not found!");
             const result = yield res.json();
@@ -38280,12 +38296,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const lib_1 = __nccwpck_require__(6791);
+const loadenv_1 = __nccwpck_require__(4907);
 const languageColors_1 = __nccwpck_require__(6769);
 function fetchRepo(user, repo) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const url = `https://api.github.com/repos/${user}/${repo}`;
-            const res = yield fetch(url, { headers: { Authorization: `Bearer ${process.env.GITHUB_TOKEN}` } });
+            const res = yield fetch(url, { headers: { Authorization: `Bearer ${loadenv_1.githubToken}` } });
             if (!res.ok)
                 throw new Error("Repo infomation not found!");
             const result = yield res.json();

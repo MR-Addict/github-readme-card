@@ -1,11 +1,12 @@
 import { formatNumber } from "../../lib";
+import { githubToken } from "../../loadenv";
 import type { RawRepoInfoType } from "../../types";
 import { languageColors } from "./languageColors";
 
 export default async function fetchRepo(user: string, repo: string) {
   try {
     const url = `https://api.github.com/repos/${user}/${repo}`;
-    const res = await fetch(url, { headers: { Authorization: `Bearer ${process.env.GITHUB_TOKEN}` } });
+    const res = await fetch(url, { headers: { Authorization: `Bearer ${githubToken}` } });
     if (!res.ok) throw new Error("Repo infomation not found!");
 
     const result: RawRepoInfoType = await res.json();

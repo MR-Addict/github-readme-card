@@ -1,10 +1,11 @@
 import { formatNumber } from "../../lib";
+import { githubToken } from "../../loadenv";
 import type { RawUserInfoType } from "../../types";
 
 export default async function fetchUser(user: string) {
   try {
     const url = `https://api.github.com/users/${user}`;
-    const res = await fetch(url, { headers: { Authorization: `Bearer ${process.env.GITHUB_TOKEN}` } });
+    const res = await fetch(url, { headers: { Authorization: `Bearer ${githubToken}` } });
     if (!res.ok) throw new Error("User infomation not found!");
 
     const result: RawUserInfoType = await res.json();
