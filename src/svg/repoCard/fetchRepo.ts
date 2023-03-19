@@ -1,3 +1,5 @@
+import axios from "axios";
+
 import { formatNumber } from "../../lib";
 import { githubToken } from "../../loadenv";
 import type { RawRepoInfoType } from "../../types";
@@ -23,13 +25,12 @@ export default async function fetchRepo(user: string, repo: string) {
   `;
 
   try {
-    const res = await fetch("https://api.github.com/graphql", {
-      method: "POST",
-      headers: { Authorization: `Bearer ${githubToken}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ query }),
-    });
-    if (!res.ok) throw new Error("Failed to fetch user info");
-    const result: RawRepoInfoType = await res.json();
+    const url = "https://api.github.com/graphql";
+    const headers = { Authorization: `Bearer ${githubToken}`, "Content-Type": "application/json" };
+    const res = await axios.post(url, JSON.stringify({ query }), { headers });
+
+    if (res.status !== 200) throw new Error("Failed to fetch user info");
+    const result: RawRepoInfoType = await res.data;
     const { name, description, stargazers, forks, primaryLanguage } = result.data.repository;
 
     return {
@@ -41,6 +42,6 @@ export default async function fetchRepo(user: string, repo: string) {
       langColor: languageColors[primaryLanguage.name].color || "#0050b2",
     };
   } catch (error) {
-    throw new Error("Repo infomation not found!");
+    throw new Error("Failed to fetch repo info");
   }
 }
