@@ -19976,21 +19976,45 @@ const lib_1 = __nccwpck_require__(6791);
 const loadenv_1 = __nccwpck_require__(4907);
 function fetchUser(user) {
     return __awaiter(this, void 0, void 0, function* () {
+        const query = `
+    {
+      user(login: "${user}") {
+        name
+        bio
+        followers {
+          totalCount
+        }
+        following {
+          totalCount
+        }
+        repositories(isFork: false, privacy: PUBLIC) {
+          totalCount
+        }
+      }
+    }
+  `;
         try {
-            const url = `https://api.github.com/users/${user}`;
-            const res = yield fetch(url, { headers: { Authorization: `Bearer ${loadenv_1.githubToken}` } });
+            const res = yield fetch("https://api.github.com/graphql", {
+                method: "POST",
+                headers: { Authorization: `Bearer ${loadenv_1.githubToken}`, "Content-Type": "application/json" },
+                body: JSON.stringify({ query }),
+            });
             if (!res.ok)
-                throw new Error("User infomation not found!");
+                throw new Error("Failed to fetch user info");
             const result = yield res.json();
+            if (result.errors)
+                throw new Error("Failed to fetch user info");
+            const { name, bio, followers, following, repositories } = result.data.user;
             return {
-                user: result.name,
-                bio: result.bio,
-                following: (0, lib_1.formatNumber)(result.following, 0),
-                followers: (0, lib_1.formatNumber)(result.followers, 0),
-                public_repos: (0, lib_1.formatNumber)(result.public_repos, 0),
+                user: name,
+                bio: bio,
+                following: (0, lib_1.formatNumber)(following.totalCount, 0),
+                followers: (0, lib_1.formatNumber)(followers.totalCount, 0),
+                repositories: (0, lib_1.formatNumber)(repositories.totalCount, 0),
             };
         }
         catch (error) {
+            console.error(error);
             throw new Error("User infomation not found!");
         }
     });
@@ -20053,19 +20077,40 @@ const loadenv_1 = __nccwpck_require__(4907);
 const languageColors_1 = __nccwpck_require__(6769);
 function fetchRepo(user, repo) {
     return __awaiter(this, void 0, void 0, function* () {
+        const query = `
+    {
+      repository(owner: "${user}", name: "${repo}") {
+        name
+        description
+        stargazers {
+          totalCount
+        }
+        forks {
+          totalCount
+        }
+        primaryLanguage {
+          name
+        }
+      }
+    }
+  `;
         try {
-            const url = `https://api.github.com/repos/${user}/${repo}`;
-            const res = yield fetch(url, { headers: { Authorization: `Bearer ${loadenv_1.githubToken}` } });
+            const res = yield fetch("https://api.github.com/graphql", {
+                method: "POST",
+                headers: { Authorization: `Bearer ${loadenv_1.githubToken}`, "Content-Type": "application/json" },
+                body: JSON.stringify({ query }),
+            });
             if (!res.ok)
-                throw new Error("Repo infomation not found!");
+                throw new Error("Failed to fetch user info");
             const result = yield res.json();
+            const { name, description, stargazers, forks, primaryLanguage } = result.data.repository;
             return {
-                name: result.name,
-                stars: (0, lib_1.formatNumber)(Number(result.stargazers_count)),
-                forks: (0, lib_1.formatNumber)(Number(result.forks_count)),
-                intro: result.description,
-                lang: result.language,
-                langColor: languageColors_1.languageColors[result.language].color || "#0050b2",
+                name: name,
+                intro: description,
+                stars: (0, lib_1.formatNumber)(Number(stargazers.totalCount)),
+                forks: (0, lib_1.formatNumber)(Number(forks.totalCount)),
+                lang: primaryLanguage.name,
+                langColor: languageColors_1.languageColors[primaryLanguage.name].color || "#0050b2",
             };
         }
         catch (error) {
