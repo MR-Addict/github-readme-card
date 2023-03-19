@@ -6,7 +6,7 @@ config();
 
 // get workspacePath and actio space
 const workspacePath = process.env.GITHUB_WORKSPACE || process.cwd();
-const actionPath = process.env.GITHUB_ACTIONS ? path.join(__dirname, "../../") : workspacePath;
+const actionPath = process.env.GITHUB_ACTIONS ? path.join(__dirname, "../../../") : workspacePath;
 
 // get github token
 const githubToken = process.env.GITHUB_TOKEN || "";
@@ -19,7 +19,7 @@ const configPath = path.join(process.env.CONFIG_PATH || workspacePath, "config.j
 // check config.json exists
 if (!fs.existsSync(configPath)) throw new Error("Please add correct config.json path");
 
-console.log({ workspacePath, actionPath: __dirname, configPath, githubToken, outputPath });
+console.log({ workspacePath, actionPath, configPath, githubToken, outputPath });
 
 // export constants
 export { workspacePath, actionPath, configPath, githubToken, outputPath };

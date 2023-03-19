@@ -40102,9 +40102,9 @@ const path_1 = __importDefault(__nccwpck_require__(1017));
 const dotenv_1 = __nccwpck_require__(2437);
 (0, dotenv_1.config)();
 // get workspacePath and actio space
-const workspacePath = process.cwd();
+const workspacePath = process.env.GITHUB_WORKSPACE || process.cwd();
 exports.workspacePath = workspacePath;
-const actionPath = process.env.GITHUB_ACTIONS ? path_1.default.join(__dirname, "../") : workspacePath;
+const actionPath = process.env.GITHUB_ACTIONS ? path_1.default.join(__dirname, "../../../") : workspacePath;
 exports.actionPath = actionPath;
 // get github token
 const githubToken = process.env.GITHUB_TOKEN || "";
@@ -40119,7 +40119,7 @@ exports.configPath = configPath;
 // check config.json exists
 if (!fs_1.default.existsSync(configPath))
     throw new Error("Please add correct config.json path");
-console.log({ workspacePath, actionPath: __dirname, configPath, githubToken, outputPath });
+console.log({ workspacePath, actionPath, configPath, githubToken, outputPath });
 
 
 /***/ }),
